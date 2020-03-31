@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { SeparatorProvider } from './hooks/useSeparator';
+import { CSVProvider } from './hooks/useCsv';
+import { TemplateProvider } from './hooks/useTemplate';
+import { ResultProvider } from './hooks/useResult';
 
-export default App;
+import SeparatorComponent from './components/Separator';
+import InputComponent from './components/Input';
+import ResultComponent from './components/Result';
+import TemplateComponent from './components/Template';
+
+export default () => (
+  <SeparatorProvider>
+    <CSVProvider>
+      <TemplateProvider>
+        <ResultProvider>
+          <div className="App">
+            <h1>App</h1>
+            <SeparatorComponent />
+            <div className="SideWrapper">
+              <TemplateComponent />
+            </div>
+            <div className="SideWrapper full">
+              <InputComponent />
+              <ResultComponent />
+            </div>
+          </div>
+        </ResultProvider>
+      </TemplateProvider>
+    </CSVProvider>
+  </SeparatorProvider>
+)
