@@ -15,7 +15,7 @@ export const ResultProvider = ({ children }) => {
 
   const result = useMemo(
     () => lines
-      .map(it => template.replace(/\$(\d+)/g, (m, idx) => it[idx]))
+      .map(it => template.replace(/\$(\d+)/g, (m, idx) => it[parseInt(idx, 10) - 1]))
       .join('\n'),
     [lines, template]
   );
